@@ -1,7 +1,7 @@
 {
   "name": "quail-js",
   "version": "0.0.1",
-  "description": "JS snippet for talkee-installation",
+  "description": "Javascript client for Quail.ink",
   "jsdelivr": "dist/quail.min.js",
   "browser": "dist/quail.min.js",
   "repository": {
