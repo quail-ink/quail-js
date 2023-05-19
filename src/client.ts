@@ -4,7 +4,7 @@ class Client{
   apikey = '';
   access_token = '';
 
-	constructor(apikey: string, access_token: string, apibase = "https://api.quail.ink") {
+	constructor(apikey = "", access_token = "", apibase = "https://api.quail.ink") {
     this.apikey = apikey;
     this.access_token = access_token;
     this.apibase = apibase;
@@ -222,4 +222,6 @@ class Client{
   }
 }
 
-export default Client;
+export {
+  Client
+}

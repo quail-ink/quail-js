@@ -1,5 +1,5 @@
 {
-  "name": "quail-js",
+  "name": "@quail/quail-js",
   "version": "0.0.1",
   "description": "Javascript client for Quail.ink",
   "jsdelivr": "dist/quail.min.js",

@@ -10,6 +10,8 @@ export default {
 	output: {
 		file: 'dist/quail.min.js',
 		format: 'iife',
-		name: 'quail'
+		name: 'quail',
+		exports: 'named',
+		sourcemap: true
 	}
 };
