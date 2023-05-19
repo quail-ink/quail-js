@@ -1,0 +1,30 @@
+{
+  "name": "quail-js",
+  "version": "0.0.1",
+  "description": "JS snippet for talkee-installation",
+  "jsdelivr": "dist/quail.min.js",
+  "browser": "dist/quail.min.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lyricat/quail-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lyricat/quail-js/issues"
+  },
+  "homepage": "https://github.com/lyricat/quail-js",
+  "author": "Lyric",
+  "license": "AGPL",
+  "scripts": {
+    "build": "rollup --config"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.1",
+    "rollup": "^3.14.0",
+    "rollup-plugin-uglify": "^6.0.4",
+    "tslib": "^2.5.2",
+    "typescript": "^5.0.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
