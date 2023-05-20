@@ -1,5 +1,5 @@
 
-class Client{
+export class Client{
   apibase = '';
   apikey = '';
   access_token = '';
@@ -143,8 +143,8 @@ class Client{
     return this.request(`/subscriptions/${list_id}`, 'DELETE', { trace_id })
   }
 
-  upgradeSubscription(list_id: number | string, redirect_url = ""): Promise<any> {
-    return this.request(`/subscriptions/${list_id}/upgrade?redirect_url=${redirect_url}`, 'POST', null)
+  upgradeSubscription(list_id: number | string, redirect_url = "", plan="paid-yearly"): Promise<any> {
+    return this.request(`/subscriptions/${list_id}/upgrade?redirect_url=${redirect_url}&plan=${plan}`, 'POST', null)
   }
 
   getListPosts(list_id: number | string, offset = 0, limit = 10): Promise<any> {
@@ -157,6 +157,10 @@ class Client{
 
   getPost(list_id: number | string, post_id: number | string): Promise<any> {
     return this.request(`/lists/${list_id}/posts/${post_id}`, 'GET', null)
+  }
+
+  getPostContent(list_id: number | string, post_id: number | string): Promise<any> {
+    return this.request(`/lists/${list_id}/posts/${post_id}/content`, 'GET', null)
   }
 
   getLists(user_id: number | string): Promise<any> {
@@ -220,8 +224,9 @@ class Client{
   async uploadAttachment(formData: FormData): Promise<any>  {
     return await this.requestFormData(`/attachments`, formData);
   }
+
+  async view(post_id) {
+    return this.request(`/posts/view?id=${post_id}`, 'POST', null)
+  }
 }
 
-export {
-  Client
-}

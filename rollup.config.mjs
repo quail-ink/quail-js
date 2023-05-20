@@ -4,14 +4,13 @@ import typescript from '@rollup/plugin-typescript';
 export default {
 	input: 'src/client.ts',
   plugins: [
-		uglify(),
+		// uglify(),
 		typescript()
 	],
 	output: {
 		file: 'dist/quail.min.js',
-		format: 'iife',
+		format: 'es',
 		name: 'quail',
-		exports: 'named',
 		sourcemap: true
 	}
 };
