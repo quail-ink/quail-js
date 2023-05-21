@@ -8,6 +8,7 @@ export class Client{
     this.apikey = opts.apikey || "";
     this.access_token = opts.access_token || "";
     this.apibase = opts.apibase || "https://api.quail.ink";
+    console.log(opts);
 	}
 
   getAccessToken() {
