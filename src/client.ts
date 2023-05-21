@@ -4,10 +4,10 @@ export class Client{
   apikey = '';
   access_token = '';
 
-	constructor(apikey = "", access_token = "", apibase = "https://api.quail.ink") {
-    this.apikey = apikey;
-    this.access_token = access_token;
-    this.apibase = apibase;
+	constructor(opts: any) {
+    this.apikey = opts.apikey || "";
+    this.access_token = opts.access_token || "";
+    this.apibase = opts.apibase || "https://api.quail.ink";
 	}
 
   getAccessToken() {
