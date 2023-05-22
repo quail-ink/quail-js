@@ -123,6 +123,10 @@ export class Client{
     return this.request(`/users/me`, 'GET', null)
   }
 
+  updateMe(profile: any): Promise<any> {
+    return this.request(`/users/me`, 'PUT', profile)
+  }
+
   subscribe(list_id: number | string, email: string, ctoken: string): Promise<any> {
     return this.request(`/subscriptions/${list_id}`, 'POST', {
       email,
