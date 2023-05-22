@@ -1,4 +1,3 @@
-
 export class Client{
   apibase = '';
   apikey = '';
@@ -234,3 +233,4 @@ export class Client{
   }
 }
 
+export default Client;
