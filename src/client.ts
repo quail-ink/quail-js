@@ -212,6 +212,10 @@ export class Client{
     return this.request(`/lists/${listID}/posts`, 'POST', payload)
   }
 
+  async updatePost (listID: any, postID:any): Promise<any> {
+    return this.request(`/lists/${listID}/posts/${postID}/update`, 'PUT', null)
+  }
+
   async publishPost (listID: any, slug:any): Promise<any> {
     return this.request(`/lists/${listID}/posts/${slug}/publish`, 'PUT', null)
   }
