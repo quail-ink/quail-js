@@ -208,6 +208,12 @@ export class Client{
     })
   }
 
+  async generateFrontmatter (title: string, content: string): Promise<any> {
+    return this.request(`/composer/frontmatter`, 'POST', {
+      title, content
+    });
+  }
+
   async createPost (listID: any, payload:any): Promise<any> {
     return this.request(`/lists/${listID}/posts`, 'POST', payload)
   }
