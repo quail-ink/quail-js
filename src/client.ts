@@ -220,8 +220,8 @@ export class Client{
     });
   }
 
-  async searchPhotos (query: string, page = 1, perPage = 10): Promise<any> {
-    return this.request(`/composer/photos/search?query=${encodeURIComponent(query)}&page=${page}&perPage=${perPage}`, 'GET', null);
+  async searchPhotos (query: string, page = 1, limit = 10): Promise<any> {
+    return this.request(`/composer/photos/search?query=${encodeURIComponent(query)}&page=${page}&limit=${limit}`, 'GET', null);
   }
 
   async createPost (listID: any, payload:any): Promise<any> {
