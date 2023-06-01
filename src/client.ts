@@ -2,11 +2,13 @@ export class Client{
   apibase = '';
   apikey = '';
   access_token = '';
+  debug = false;
 
 	constructor(opts: any) {
     this.apikey = opts.apikey || "";
     this.access_token = opts.access_token || "";
     this.apibase = opts.apibase || "https://api.quail.ink";
+    this.debug = opts.debug || false;
 	}
 
   getAccessToken() {
@@ -44,6 +46,13 @@ export class Client{
 
     if (this.apikey) {
       headers['X-QUAIL-Key'] = this.apikey;
+    }
+
+    if (this.debug) {
+      console.log("request method", method);
+      console.log("request url", url);
+      console.log("request headers", headers);
+      console.log("request body", body);
     }
 
     const resp = await fetch(url, {
