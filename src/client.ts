@@ -231,7 +231,12 @@ export class Client{
 
   async searchPhotos (query: string, page = 1, limit = 10): Promise<any> {
     query = encodeURIComponent(query)
-    return this.request(`/composer/photos/search?query=${query}&page=${page}&limit=${limit}`, 'GET', null);
+    return this.request(`/composer/unsplash/photos/search?query=${query}&page=${page}&limit=${limit}`, 'GET', null);
+  }
+
+  async getPhotoDownloadUrl (endpoint: string): Promise<any> {
+    endpoint = encodeURIComponent(endpoint)
+    return this.request(`/composer/unsplash/photos/download_url?endpoint=${endpoint}`, 'GET', null);
   }
 
   async createPost (listID: any, payload:any): Promise<any> {
