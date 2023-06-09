@@ -167,6 +167,10 @@ export class Client{
     return this.request(`/lists/${list_id}/pinned`, 'GET', null)
   }
 
+  pinPosts(list_id:number, ids: number[]): Promise<any> {
+    return this.request(`/lists/${list_id}/pinned`, 'PUT', { ids })
+  }
+
   getPost(list_id: number | string, post_id: number | string): Promise<any> {
     return this.request(`/lists/${list_id}/posts/${post_id}`, 'GET', null)
   }
