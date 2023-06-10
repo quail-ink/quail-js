@@ -189,7 +189,6 @@ export class Client{
 
   updateList(list_id: number | string, payload:any): Promise<any> {
     return this.request(`/lists/${list_id}`, 'PUT', {
-      "slug": payload.slug || '',
       "avatar_image_url": payload.avatar_image_url || '',
       "title": payload.title || '',
       "description": payload.description || '',
@@ -201,6 +200,10 @@ export class Client{
       "telegram_bot_token": payload.telegram_bot_token || '',
       "telegram_channel_id": payload.telegram_channel_id || '',
     })
+  }
+
+  updateListSlug(list_id: number | string, slug:string): Promise<any> {
+    return this.request(`/lists/${list_id}?slug=${slug}`, 'PUT', null)
   }
 
   getListSubscriptions(list_id: number | string, offset: number, limit: number): Promise<any> {
