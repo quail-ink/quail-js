@@ -203,7 +203,7 @@ export class Client{
   }
 
   updateListSlug(list_id: number | string, slug:string): Promise<any> {
-    return this.request(`/lists/${list_id}?slug=${slug}`, 'PUT', null)
+    return this.request(`/lists/${list_id}/slug?slug=${slug}`, 'PUT', null)
   }
 
   getListSubscriptions(list_id: number | string, offset: number, limit: number): Promise<any> {
