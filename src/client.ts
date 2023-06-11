@@ -163,6 +163,10 @@ export class Client{
     return this.request(`/lists/${list_id}/posts?offset=${offset}&limit=${limit}`, 'GET', null)
   }
 
+  getListDelivery(list_id: number | string, offset = 0, limit = 10): Promise<any> {
+    return this.request(`/lists/${list_id}/delivery?offset=${offset}&limit=${limit}`, 'GET', null)
+  }
+
   getPinnedPosts(list_id: number | string): Promise<any> {
     return this.request(`/lists/${list_id}/pinned`, 'GET', null)
   }
