@@ -159,8 +159,12 @@ export class Client{
     return this.request(`/subscriptions/${list_id}/upgrade?redirect_url=${redirect_url}&plan=${plan}`, 'POST', null)
   }
 
-  getListPosts(list_id: number | string, offset = 0, limit = 10): Promise<any> {
-    return this.request(`/lists/${list_id}/posts?offset=${offset}&limit=${limit}`, 'GET', null)
+  getListPosts(list_id: number | string, offset = 0, limit = 10, pub = false): Promise<any> {
+    let url = `/lists/${list_id}/posts?offset=${offset}&limit=${limit}`
+    if (pub) {
+      url += `&public=1`
+    }
+    return this.request(url, 'GET', null)
   }
 
   getListDelivery(list_id: number | string, offset = 0, limit = 10): Promise<any> {
