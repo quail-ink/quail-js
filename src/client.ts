@@ -278,8 +278,12 @@ export class Client{
     return await this.requestFormData(`/attachments`, formData);
   }
 
-  async view(post_id) {
+  async incView(post_id) {
     return this.request(`/posts/view?id=${post_id}`, 'POST', null)
+  }
+
+  async incRead(post_id) {
+    return this.request(`/posts/read?id=${post_id}`, 'POST', null)
   }
 }
 
