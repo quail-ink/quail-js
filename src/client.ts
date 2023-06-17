@@ -147,6 +147,10 @@ export class Client{
     return this.request(`/subscriptions`, 'GET', null)
   }
 
+  getMySubscription(list_id: number | string): Promise<any> {
+    return this.request(`/subscriptions/${list_id}/rel`, 'GET', null)
+  }
+
   subscribeNoChallenge(list_id: number | string): Promise<any> {
     return this.request(`/subscriptions/${list_id}/no-challenge`, 'POST', null)
   }
