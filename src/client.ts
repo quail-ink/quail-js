@@ -214,6 +214,10 @@ export class Client{
     })
   }
 
+  updateListPayments(list_id: number | string, payload:any): Promise<any> {
+    return this.request(`/lists/${list_id}/payments`, 'PUT', payload)
+  }
+
   updateListSlug(list_id: number | string, slug:string): Promise<any> {
     return this.request(`/lists/${list_id}/slug?slug=${slug}`, 'PUT', null)
   }
