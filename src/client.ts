@@ -143,6 +143,22 @@ export class Client{
     })
   }
 
+  batchAddSubscribers(list_id: number | string, members: any[], ctoken: string): Promise<any> {
+    return this.request(`/subscriptions/${list_id}/add-members`, 'POST', {
+      'challenge-action': 'subscribe',
+      'challenge-token': ctoken,
+      'members': members,
+    })
+  }
+
+  updateSubscriber(list_id: number | string, member_id: number, payload: any): Promise<any> {
+    return this.request(`/subscriptions/${list_id}/members/${member_id}`, 'PUT', payload)
+  }
+
+  deleteSubscriber(list_id: number | string, member_id: number): Promise<any> {
+    return this.request(`/subscriptions/${list_id}/members/${member_id}`, 'DELETE', null)
+  }
+
   getMySubscriptions(): Promise<any> {
     return this.request(`/subscriptions`, 'GET', null)
   }
@@ -159,8 +175,9 @@ export class Client{
     return this.request(`/subscriptions/${list_id}`, 'DELETE', { trace_id })
   }
 
-  upgradeSubscription(list_id: number | string, redirect_url = "", plan="paid-yearly"): Promise<any> {
-    return this.request(`/subscriptions/${list_id}/upgrade?redirect_url=${redirect_url}&plan=${plan}`, 'POST', null)
+  upgradeSubscription(list_id: number | string, redirect_url = "", plan="silver", dur=90): Promise<any> {
+    // default dur = 90 days
+    return this.request(`/subscriptions/${list_id}/upgrade?redirect_url=${redirect_url}&plan=${plan}&dur=${dur}`, 'POST', null)
   }
 
   getListPosts(list_id: number | string, offset = 0, limit = 10, pub = false): Promise<any> {
