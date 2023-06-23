@@ -306,5 +306,13 @@ export class Client{
   async incCount(post_id, field) {
     return this.request(`/posts/${field}?id=${post_id}`, 'POST', null)
   }
+
+  async getExploreTrendingPosts(offset = 0, limit = 10): Promise<any> {
+    return this.request(`/explore/trending/posts?offset=${offset}&limit=${limit}`, 'GET', null)
+  }
+
+  async getExploreTrendingLists(offset = 0, limit = 10): Promise<any> {
+    return this.request(`/explore/trending/lists?offset=${offset}&limit=${limit}`, 'GET', null)
+  }
 }
 
