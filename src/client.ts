@@ -208,6 +208,10 @@ export class Client{
     return this.request(`/lists/${list_id}/posts/${post_id}/content`, 'GET', null)
   }
 
+  createList(payload: any): Promise<any> {
+    return this.request(`/lists`, 'POST', payload)
+  }
+
   getLists(user_id: number | string): Promise<any> {
     return this.request(`/users/${user_id}/lists`, 'GET', null)
   }
