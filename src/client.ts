@@ -220,6 +220,10 @@ export class Client{
     return this.request(`/lists/${list_id}`, 'GET', null)
   }
 
+  getListMetrics(list_id: number | string): Promise<any> {
+    return this.request(`/lists/${list_id}/metrics`, 'GET', null)
+  }
+
   updateList(list_id: number | string, payload:any): Promise<any> {
     return this.request(`/lists/${list_id}`, 'PUT', {
       "avatar_image_url": payload.avatar_image_url || '',
