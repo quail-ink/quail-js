@@ -247,8 +247,15 @@ export class Client{
     return this.request(`/lists/${list_id}/slug?slug=${slug}`, 'PUT', null)
   }
 
-  getListSubscriptions(list_id: number | string, offset: number, limit: number): Promise<any> {
-    return this.request(`/lists/${list_id}/subscriptions?offset=${offset}&limit=${limit}`, 'GET', null)
+  getListSubscriptions(list_id: number | string, offset: number, limit: number, email = "", premium = ""): Promise<any> {
+    let url = `/lists/${list_id}/subscriptions?offset=${offset}&limit=${limit}`
+    if (email) {
+      url += `&email=${encodeURIComponent(email)}`
+    }
+    if (premium) {
+      url += `&premium=${premium}`
+    }
+    return this.request(url, 'GET', null)
   }
 
   getApikeys(): Promise<any> {
