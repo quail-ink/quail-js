@@ -204,6 +204,10 @@ export class Client{
     return this.request(`/lists/${list_id}/posts/${post_id}`, 'GET', null)
   }
 
+  deletePost(list_id: number | string, post_id: number | string): Promise<any> {
+    return this.request(`/lists/${list_id}/posts/${post_id}`, 'DELETE', null)
+  }
+
   getPostContent(list_id: number | string, post_id: number | string): Promise<any> {
     return this.request(`/lists/${list_id}/posts/${post_id}/content`, 'GET', null)
   }
