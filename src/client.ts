@@ -276,14 +276,22 @@ export class Client{
     })
   }
 
-  async generateFrontmatter (title: string, content: string): Promise<any> {
-    return this.request(`/composer/frontmatter`, 'POST', {
+  async generateFrontmatter (title: string, content: string, includes: string[] = []): Promise<any> {
+    let url = `/composer/frontmatter`
+    if (includes.length > 0) {
+      url = `${url}?includes=${includes.map(x => encodeURIComponent(x.toLowerCase())).join(',')}`
+    }
+    return this.request(url, 'POST', {
       title, content
     });
   }
 
-  async generateMetadata (title: string, content: string): Promise<any> {
-    return this.request(`/composer/metadata`, 'POST', {
+  async generateMetadata (title: string, content: string, includes: string[] = []): Promise<any> {
+    let url = `/composer/metadata`
+    if (includes.length > 0) {
+      url = `${url}?includes=${includes.map(x => encodeURIComponent(x.toLowerCase())).join(',')}`
+    }
+    return this.request(url, 'POST', {
       title, content
     });
   }
