@@ -247,6 +247,21 @@ export class Client{
     return this.request(`/lists/${list_id}/payments`, 'PUT', payload)
   }
 
+  updateListEmailSettings(list_id: number | string, payload:any): Promise<any> {
+    if (payload.email_signature_text.length > 255) {
+      payload.email_signature_text = payload.email_signature_text.substring(0, 255)
+    }
+    if (payload.email_onboarding_text.length > 255) {
+      payload.email_onboarding_text = payload.email_onboarding_text.substring(0, 255)
+    }
+    return this.request(`/lists/${list_id}/email_settings`, 'PUT', {
+      "email_channel_enabled": payload.email_channel_enabled || true,
+      "email_deny_list": payload.email_deny_list || [],
+      "email_onboarding_text": payload.email_onboarding_text || [],
+      "email_signature_text": payload.email_signature_text || [],
+    })
+  }
+
   updateListSlug(list_id: number | string, slug:string): Promise<any> {
     return this.request(`/lists/${list_id}/slug?slug=${slug}`, 'PUT', null)
   }
