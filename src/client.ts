@@ -255,7 +255,7 @@ export class Client{
       payload.email_onboarding_text = payload.email_onboarding_text.substring(0, 2048)
     }
     return this.request(`/lists/${list_id}/email_settings`, 'PUT', {
-      "email_channel_enabled": payload.email_channel_enabled || true,
+      "email_channel_enabled": payload.email_channel_enabled,
       "email_deny_list": payload.email_deny_list || [],
       "email_onboarding_text": payload.email_onboarding_text || "",
       "email_signature_text": payload.email_signature_text || "",
