@@ -62,6 +62,11 @@ export class Client{
     });
 
     const json = await resp.json();
+
+    if (this.debug) {
+      console.log("resp json", json);
+    }
+
     if (json.code) {
       console.log("quail client error", json.code, json.message || json.msg);
       throw new Error(`${json.code} | ${json.message || json.msg} | ${method} ${url}`);
@@ -83,12 +88,24 @@ export class Client{
       headers['X-QUAIL-Key'] = this.apikey;
     }
 
+    if (this.debug) {
+      console.log("request url", url);
+      console.log("request headers", headers);
+      console.log("request body", body);
+    }
+
     const resp = await fetch(url, {
       method: "POST",
       headers,
-      body: body || null,
+      body: body ? JSON.stringify(body) : null,
     });
+
     const json = await resp.json();
+
+    if (this.debug) {
+      console.log("resp json", json);
+    }
+
     if (json.code) {
       console.log("quail client error", json.code, json.message || json.msg);
       throw new Error(`${json.code} | ${json.message || json.msg} | POST ${url}`);
