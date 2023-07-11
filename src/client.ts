@@ -97,7 +97,7 @@ export class Client{
     const resp = await fetch(url, {
       method: "POST",
       headers,
-      body: body ? JSON.stringify(body) : null,
+      body: body || null,
     });
 
     const json = await resp.json();
