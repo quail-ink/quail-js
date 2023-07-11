@@ -89,6 +89,10 @@ export class Client{
       body: body || null,
     });
     const json = await resp.json();
+    if (json.code) {
+      console.log("quail client error", json.code, json.message || json.msg);
+      throw new Error(`${json.code} | ${json.message || json.msg} | POST ${url}`);
+    }
     return json.data || { code: json?.code, message: json?.message };
   }
 
