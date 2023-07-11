@@ -291,7 +291,7 @@ export class Client{
     })
   }
 
-  async generateFrontmatter (title: string, content: string, includes: string[] = []): Promise<any> {
+  generateFrontmatter (title: string, content: string, includes: string[] = []): Promise<any> {
     let url = `/composer/frontmatter`
     if (includes.length > 0) {
       url = `${url}?includes=${includes.map(x => encodeURIComponent(x.toLowerCase())).join(',')}`
@@ -301,7 +301,7 @@ export class Client{
     });
   }
 
-  async generateMetadata (title: string, content: string, includes: string[] = []): Promise<any> {
+  generateMetadata (title: string, content: string, includes: string[] = []): Promise<any> {
     let url = `/composer/metadata`
     if (includes.length > 0) {
       url = `${url}?includes=${includes.map(x => encodeURIComponent(x.toLowerCase())).join(',')}`
@@ -311,49 +311,49 @@ export class Client{
     });
   }
 
-  async searchPhotos (query: string, page = 1, limit = 10): Promise<any> {
+  searchPhotos (query: string, page = 1, limit = 10): Promise<any> {
     query = encodeURIComponent(query)
     return this.request(`/composer/unsplash/photos/search?query=${query}&page=${page}&limit=${limit}`, 'GET', null);
   }
 
-  async getPhotoDownloadUrl (endpoint: string): Promise<any> {
+  getPhotoDownloadUrl (endpoint: string): Promise<any> {
     endpoint = encodeURIComponent(endpoint)
     return this.request(`/composer/unsplash/photos/download_url?endpoint=${endpoint}`, 'GET', null);
   }
 
-  async createPost (listID: any, payload:any): Promise<any> {
+  createPost (listID: any, payload:any): Promise<any> {
     return this.request(`/lists/${listID}/posts`, 'POST', payload)
   }
 
-  async updatePost (listID: any, postID:any, payload:any): Promise<any> {
+  updatePost (listID: any, postID:any, payload:any): Promise<any> {
     return this.request(`/lists/${listID}/posts/${postID}/update`, 'PUT', payload)
   }
 
-  async publishPost (listID: any, slug:any): Promise<any> {
+  publishPost (listID: any, slug:any): Promise<any> {
     return this.request(`/lists/${listID}/posts/${slug}/publish`, 'PUT', null)
   }
 
-  async unpublishPost (listID: any, slug:any): Promise<any> {
+  unpublishPost (listID: any, slug:any): Promise<any> {
     return this.request(`/lists/${listID}/posts/${slug}/unpublish`, 'PUT', null)
   }
 
-  async deliverPost (listID: any, slug:any): Promise<any> {
+  deliverPost (listID: any, slug:any): Promise<any> {
     return this.request(`/lists/${listID}/posts/${slug}/deliver`, 'PUT', null)
   }
 
-  async uploadAttachment(formData: FormData): Promise<any>  {
-    return await this.requestFormData(`/attachments`, formData);
+  uploadAttachment(formData: FormData): Promise<any> {
+    return this.requestFormData(`/attachments`, formData);
   }
 
-  async incCount(post_id, field) {
+  incCount(post_id, field): Promise<any>  {
     return this.request(`/posts/${field}?id=${post_id}`, 'POST', null)
   }
 
-  async getExploreTrendingPosts(offset = 0, limit = 10): Promise<any> {
+  getExploreTrendingPosts(offset = 0, limit = 10): Promise<any> {
     return this.request(`/explore/trending/posts?offset=${offset}&limit=${limit}`, 'GET', null)
   }
 
-  async getExploreTrendingLists(offset = 0, limit = 10): Promise<any> {
+  getExploreTrendingLists(offset = 0, limit = 10): Promise<any> {
     return this.request(`/explore/trending/lists?offset=${offset}&limit=${limit}`, 'GET', null)
   }
 }
