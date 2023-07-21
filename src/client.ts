@@ -201,7 +201,7 @@ export class Client{
     return this.request(`/subscriptions/${list_id}/upgrade?redirect_url=${redirect_url}&plan=${plan}&dur=${dur}`, 'POST', null)
   }
 
-  getListPosts(list_id: number | string, offset = 0, limit = 10, pub = false): Promise<any> {
+  getListPosts(list_id: number | string, offset = 0, limit = 16, pub = false): Promise<any> {
     let url = `/lists/${list_id}/posts?offset=${offset}&limit=${limit}`
     if (pub) {
       url += `&public=1`
@@ -370,12 +370,20 @@ export class Client{
     return this.request(`/posts/${field}?id=${post_id}`, 'POST', null)
   }
 
-  getExploreTrendingPosts(offset = 0, limit = 10): Promise<any> {
+  getExploreTrendingPosts(offset = 0, limit = 16): Promise<any> {
     return this.request(`/explore/trending/posts?offset=${offset}&limit=${limit}`, 'GET', null)
   }
 
-  getExploreTrendingLists(offset = 0, limit = 10): Promise<any> {
+  getExploreTrendingLists(offset = 0, limit = 16): Promise<any> {
     return this.request(`/explore/trending/lists?offset=${offset}&limit=${limit}`, 'GET', null)
+  }
+
+  getAbuseReportOpponent(trace_id: string): Promise<any> {
+    return this.request(`/reports/opponent?trace_id=${trace_id}`, 'GET', null)
+  }
+
+  createAbuseReport(payload: any): Promise<any> {
+    return this.request(`/reports`, 'POST', payload)
   }
 }
 
