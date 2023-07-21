@@ -382,8 +382,12 @@ export class Client{
     return this.request(`/reports/opponent?trace_id=${trace_id}`, 'GET', null)
   }
 
-  createAbuseReport(payload: any): Promise<any> {
-    return this.request(`/reports`, 'POST', payload)
+  createAbuseReport(payload: any, ctoken: string): Promise<any> {
+    return this.request(`/reports`, 'POST', {
+      'challenge-action': 'abuse-report',
+      'challenge-token': ctoken,
+      ...payload,
+    })
   }
 }
 
