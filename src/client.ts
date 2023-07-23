@@ -370,12 +370,20 @@ export class Client{
     return this.request(`/posts/${field}?id=${post_id}`, 'POST', null)
   }
 
-  getExploreTrendingPosts(offset = 0, limit = 16): Promise<any> {
-    return this.request(`/explore/trending/posts?offset=${offset}&limit=${limit}`, 'GET', null)
+  getExploreTrendingPosts(offset = 0, limit = 16, lang=''): Promise<any> {
+    let url = `/explore/trending/posts?offset=${offset}&limit=${limit}`
+    if (lang) {
+      url += `&lang=${lang}`
+    }
+    return this.request(url, 'GET', null)
   }
 
-  getExploreTrendingLists(offset = 0, limit = 16): Promise<any> {
-    return this.request(`/explore/trending/lists?offset=${offset}&limit=${limit}`, 'GET', null)
+  getExploreTrendingLists(offset = 0, limit = 16, lang=''): Promise<any> {
+    let url = `/explore/trending/lists?offset=${offset}&limit=${limit}`
+    if (lang) {
+      url += `&lang=${lang}`
+    }
+    return this.request(url, 'GET', null)
   }
 
   getAbuseReportOpponent(trace_id: string): Promise<any> {
