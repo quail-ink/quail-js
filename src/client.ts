@@ -358,8 +358,14 @@ export class Client{
     return this.request(`/lists/${listID}/posts/${slug}/unpublish`, 'PUT', null)
   }
 
-  deliverPost (listID: any, slug:any): Promise<any> {
-    return this.request(`/lists/${listID}/posts/${slug}/deliver`, 'PUT', null)
+  deliverPost (listID: any, slug:any, scheduledAt): Promise<any> {
+    let payload = null;
+    if (scheduledAt) {
+      payload = {
+        scheduled_at: scheduledAt,
+      }
+    }
+    return this.request(`/lists/${listID}/posts/${slug}/deliver`, 'PUT', payload)
   }
 
   uploadAttachment(formData: FormData): Promise<any> {
