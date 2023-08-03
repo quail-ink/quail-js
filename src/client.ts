@@ -213,6 +213,10 @@ export class Client{
     return this.request(`/lists/${list_id}/delivery?offset=${offset}&limit=${limit}`, 'GET', null)
   }
 
+  cancelScheduledDelivery(list_id: number | string, delivery_id: number): Promise<any> {
+    return this.request(`/lists/${list_id}/delivery/${delivery_id}/cancel`, 'PUT', null)
+  }
+
   getPinnedPosts(list_id: number | string): Promise<any> {
     return this.request(`/lists/${list_id}/pinned`, 'GET', null)
   }
