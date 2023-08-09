@@ -336,6 +336,13 @@ export class Client{
     });
   }
 
+  generateTweets (title: string, content: string): Promise<any> {
+    let url = `/composer/generate-tweets`
+    return this.request(url, 'POST', {
+      title, content
+    });
+  }
+
   searchPhotos (query: string, page = 1, limit = 10): Promise<any> {
     query = encodeURIComponent(query)
     return this.request(`/composer/unsplash/photos/search?query=${query}&page=${page}&limit=${limit}`, 'GET', null);
