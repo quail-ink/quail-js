@@ -379,8 +379,8 @@ export class Client{
     return this.request(`/lists/${listID}/posts/${slug}/deliver`, 'PUT', payload)
   }
 
-  genPostPreviewHtml (listID: any, slug:any): Promise<any> {
-    return this.request(`/lists/${listID}/posts/${slug}/preview`, 'POST', null)
+  getPostPreviewUrl (listID: any, slug:any): string {
+    return `${this.apibase}/lists/${listID}/posts/${slug}/preview?access_token=${this.getAccessToken()}`
   }
 
   uploadAttachment(formData: FormData): Promise<any> {
