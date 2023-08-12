@@ -272,6 +272,10 @@ export class Client{
     return this.request(`/lists/${list_id}/payments`, 'PUT', payload)
   }
 
+  updateListAnalytics(list_id: number | string, payload:any): Promise<any> {
+    return this.request(`/lists/${list_id}/analytics`, 'PUT', payload)
+  }
+
   updateListEmailSettings(list_id: number | string, payload:any): Promise<any> {
     if (payload.email_signature_text.length > 2048) {
       payload.email_signature_text = payload.email_signature_text.substring(0, 2048)
@@ -359,6 +363,10 @@ export class Client{
 
   updatePost (listID: any, postID:any, payload:any): Promise<any> {
     return this.request(`/lists/${listID}/posts/${postID}/update`, 'PUT', payload)
+  }
+
+  updatePostOptions (listID: any, postID:any, payload:any): Promise<any> {
+    return this.request(`/lists/${listID}/posts/${postID}/options`, 'PUT', payload)
   }
 
   publishPost (listID: any, slug:any): Promise<any> {
