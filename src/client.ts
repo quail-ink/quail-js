@@ -156,6 +156,14 @@ export class Client{
     return this.request(`/users/me`, 'PUT', profile)
   }
 
+  getUser(user_id: number): Promise<any> {
+    return this.request(`/users/${user_id}`, 'GET', null)
+  }
+
+  getUserLists(user_id: number): Promise<any> {
+    return this.request(`/users/${user_id}/lists`, 'GET', null)
+  }
+
   subscribe(list_id: number | string, email: string, ctoken: string): Promise<any> {
     return this.request(`/subscriptions/${list_id}`, 'POST', {
       email,
