@@ -257,6 +257,10 @@ export class Client{
     return this.request(`/lists/${list_id}`, 'GET', null)
   }
 
+  getListPayment(list_id: number | string): Promise<any> {
+    return this.request(`/lists/${list_id}/payment`, 'GET', null)
+  }
+
   getListMetrics(list_id: number | string): Promise<any> {
     return this.request(`/lists/${list_id}/metrics`, 'GET', null)
   }
