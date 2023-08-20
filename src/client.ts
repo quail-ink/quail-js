@@ -140,6 +140,14 @@ export class Client{
     })
   }
 
+  getCurrencies(): Promise<any> {
+    return this.request(`/currencies`, 'GET', null)
+  }
+
+  getCurrency(code: string): Promise<any> {
+    return this.request(`/currencies/${code}`, 'GET', null)
+  }
+
   getAssets(): Promise<any> {
     return this.request(`/assets`, 'GET', null)
   }
