@@ -140,6 +140,10 @@ export class Client{
     })
   }
 
+  getConfig(): Promise<any> {
+    return this.request(`/c`, 'GET', null)
+  }
+
   getCurrencies(): Promise<any> {
     return this.request(`/currencies`, 'GET', null)
   }
@@ -280,8 +284,8 @@ export class Client{
     return this.request(`/lists/${list_id}`, 'GET', null)
   }
 
-  getListPayment(list_id: number | string): Promise<any> {
-    return this.request(`/lists/${list_id}/payment`, 'GET', null)
+  getListPayments(list_id: number | string): Promise<any> {
+    return this.request(`/lists/${list_id}/payments`, 'GET', null)
   }
 
   getListMetrics(list_id: number | string): Promise<any> {
