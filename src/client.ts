@@ -164,6 +164,16 @@ export class Client{
     return this.request(`/users/me`, 'PUT', profile)
   }
 
+  getMyOrders(offset: number, limit: number): Promise<any> {
+    let url = `/users/me/orders?offset=${offset}&limit=${limit}`
+    return this.request(url, 'GET', null)
+  }
+
+  getOrder(order_id: number): Promise<any> {
+    let url = `/orders/${order_id}`
+    return this.request(url, 'GET', null)
+  }
+
   getUser(user_id: number): Promise<any> {
     return this.request(`/users/${user_id}`, 'GET', null)
   }
@@ -251,6 +261,11 @@ export class Client{
 
   getPostContent(list_id: number | string, post_id: number | string): Promise<any> {
     return this.request(`/lists/${list_id}/posts/${post_id}/content`, 'GET', null)
+  }
+
+  getListOrders(list_id: number | string, offset: number, limit: number): Promise<any> {
+    let url = `/lists/${list_id}/orders?offset=${offset}&limit=${limit}`
+    return this.request(url, 'GET', null)
   }
 
   createList(payload: any): Promise<any> {
