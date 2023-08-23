@@ -272,6 +272,11 @@ export class Client{
     return this.request(url, 'GET', null)
   }
 
+  getListIncomes(list_id: number | string, year: number): Promise<any> {
+    let url = `/lists/${list_id}/incomes?year=${year}`
+    return this.request(url, 'GET', null)
+  }
+
   createList(payload: any): Promise<any> {
     return this.request(`/lists`, 'POST', payload)
   }
