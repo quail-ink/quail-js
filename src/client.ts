@@ -226,9 +226,9 @@ export class Client{
     return this.request(`/subscriptions/${list_id}`, 'DELETE', { trace_id })
   }
 
-  upgradeSubscription(list_id: number | string, redirect_url = "", plan="silver", dur=90): Promise<any> {
-    // default dur = 90 days
-    return this.request(`/subscriptions/${list_id}/upgrade?redirect_url=${redirect_url}&plan=${plan}&dur=${dur}`, 'POST', null)
+  upgradeSubscription(list_id: number | string, approach = "mixpay", redirect_url = "", plan="silver", dur=365): Promise<any> {
+    // default dur = 365 days
+    return this.request(`/subscriptions/${list_id}/upgrade?approach=${approach}&redirect_url=${redirect_url}&plan=${plan}&dur=${dur}`, 'POST', null)
   }
 
   getListPosts(list_id: number | string, offset = 0, limit = 16, pub = false): Promise<any> {
