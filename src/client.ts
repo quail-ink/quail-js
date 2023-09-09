@@ -289,6 +289,10 @@ export class Client{
     return this.request(`/lists/${list_id}`, 'GET', null)
   }
 
+  getListByDomain(domain: number | string): Promise<any> {
+    return this.request(`/lists/domains/${domain}`, 'GET', null)
+  }
+
   getListPayments(list_id: number | string): Promise<any> {
     return this.request(`/lists/${list_id}/payments`, 'GET', null)
   }
