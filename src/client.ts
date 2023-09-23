@@ -343,6 +343,10 @@ export class Client{
     return this.request(`/lists/${list_id}/slug?slug=${slug}`, 'PUT', null)
   }
 
+  updateListDomain(list_id: number | string, payload:any): Promise<any> {
+    return this.request(`/lists/${list_id}/domain`, 'PUT', payload)
+  }
+
   getListSubscriptions(list_id: number | string, offset: number, limit: number, email = "", premium = ""): Promise<any> {
     let url = `/lists/${list_id}/subscriptions?offset=${offset}&limit=${limit}`
     if (email) {
