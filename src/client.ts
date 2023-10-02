@@ -485,5 +485,13 @@ export class Client{
       ...payload,
     })
   }
+
+  getComments(post_id: number, offset = 0, limit = 16): Promise<any> {
+    return this.request(`/comments?post_id=${post_id}&offset=${offset}&limit=${limit}`, 'GET', null)
+  }
+
+  createComment(payload: any): Promise<any> {
+    return this.request(`/comments`, 'POST', payload)
+  }
 }
 
