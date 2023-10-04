@@ -493,5 +493,9 @@ export class Client{
   createComment(payload: any): Promise<any> {
     return this.request(`/comments`, 'POST', payload)
   }
+
+  deleteComment(comment_id: number): Promise<any> {
+    return this.request(`/comments/${comment_id}`, 'DELETE', null)
+  }
 }
 
