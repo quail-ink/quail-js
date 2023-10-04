@@ -490,6 +490,10 @@ export class Client{
     return this.request(`/comments?post_id=${post_id}&offset=${offset}&limit=${limit}`, 'GET', null)
   }
 
+  getCommentsByList(list_id: number, offset = 0, limit = 16): Promise<any> {
+    return this.request(`/comments?list_id=${list_id}&offset=${offset}&limit=${limit}`, 'GET', null)
+  }
+
   createComment(payload: any): Promise<any> {
     return this.request(`/comments`, 'POST', payload)
   }
