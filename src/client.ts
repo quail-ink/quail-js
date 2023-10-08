@@ -140,6 +140,25 @@ export class Client{
     })
   }
 
+  loginForTempToken(email: string, code: string): Promise<any> {
+    let lang = navigator.language;
+    if (lang.length > 2) {
+      lang = lang.substring(0, 2);
+    }
+
+    return this.request(`/auth/login`, 'POST', {
+      "method": "email_code",
+      "email": email,
+      "code": code,
+      "lang": lang,
+      "type": "temporary",
+    })
+  }
+
+  exchangeToken(token: string): Promise<any> {
+    return this.request(`/auth/exchange?token=${token}`, 'GET', null)
+  }
+
   getConfig(): Promise<any> {
     return this.request(`/c`, 'GET', null)
   }
