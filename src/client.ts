@@ -140,8 +140,8 @@ export class Client{
     })
   }
 
-  issueEphemeralToken(domain: string): Promise<any> {
-    return this.request(`/auth/ephemeral?domain=${domain}`, 'POST', null)
+  issueEphemeralToken(origin: string): Promise<any> {
+    return this.request(`/auth/ephemeral?origin=${origin}`, 'POST', null)
   }
 
   exchangeAccessTokenWithEphemeral(token: string): Promise<any> {
