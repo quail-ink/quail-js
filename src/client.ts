@@ -140,23 +140,12 @@ export class Client{
     })
   }
 
-  loginForTempToken(email: string, code: string): Promise<any> {
-    let lang = navigator.language;
-    if (lang.length > 2) {
-      lang = lang.substring(0, 2);
-    }
-
-    return this.request(`/auth/login`, 'POST', {
-      "method": "email_code",
-      "email": email,
-      "code": code,
-      "lang": lang,
-      "type": "temporary",
-    })
+  issueEphemeralToken(domain: string): Promise<any> {
+    return this.request(`/auth/ephemeral?domain=${domain}`, 'POST', null)
   }
 
-  exchangeToken(token: string): Promise<any> {
-    return this.request(`/auth/exchange?token=${token}`, 'GET', null)
+  exchangeAccessTokenWithEphemeral(token: string): Promise<any> {
+    return this.request(`/auth/ephemeral/exchange?token=${token}`, 'POST', null)
   }
 
   getConfig(): Promise<any> {
