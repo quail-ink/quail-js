@@ -513,5 +513,13 @@ export class Client{
   deleteComment(comment_id: number): Promise<any> {
     return this.request(`/comments/${comment_id}`, 'DELETE', null)
   }
+
+  approveComment(comment_id: number): Promise<any> {
+    return this.request(`/comments/${comment_id}/approve`, 'PUT', null)
+  }
+
+  rejectComment(comment_id: number): Promise<any> {
+    return this.request(`/comments/${comment_id}/reject`, 'PUT', null)
+  }
 }
 
