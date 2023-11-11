@@ -470,6 +470,10 @@ export class Client{
     return this.request(`/posts/${field}?id=${post_id}`, 'POST', null)
   }
 
+  getPostsOfMySubscriptions(offset = 0, limit = 16): Promise<any>  {
+    return this.request(`/posts/subscribed?offset=${offset}&limit=${limit}`, 'GET', null)
+  }
+
   getExploreTrendingPosts(offset = 0, limit = 16, lang=''): Promise<any> {
     let url = `/explore/trending/posts?offset=${offset}&limit=${limit}`
     if (lang) {
