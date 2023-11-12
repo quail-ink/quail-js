@@ -320,11 +320,8 @@ export class Client{
     })
   }
 
-  updateListTelegram(list_id: number | string, payload:any): Promise<any> {
-    return this.request(`/lists/${list_id}/telegram`, 'PUT', {
-      "telegram_bot_token": payload.telegram_bot_token || '',
-      "telegram_channel_id": payload.telegram_channel_id || '',
-    })
+  updateListChannel(list_id: number | string, payload:any): Promise<any> {
+    return this.request(`/lists/${list_id}/channel`, 'PUT', payload)
   }
 
   updateListPayments(list_id: number | string, payload:any): Promise<any> {
