@@ -2,7 +2,7 @@ import { uglify } from "rollup-plugin-uglify";
 import typescript from '@rollup/plugin-typescript';
 
 export default {
-	input: 'src/client.ts',
+	input: 'src/main.js',
   plugins: [
 		// uglify(),
 		typescript()
