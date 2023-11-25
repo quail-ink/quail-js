@@ -9,7 +9,7 @@ export class AuxiliaClient{
 	constructor(opts) {
     this.apikey = opts.apikey || "";
     this.access_token = opts.access_token || "";
-    this.apibase = opts.apibase || "https://api.quail.ink";
+    this.apibase = opts.apibase || "https://api.quail.ink/auxilia";
     this.debug = opts.debug || false;
 	}
 
@@ -90,7 +90,7 @@ export class AuxiliaClient{
   // place orders
   placeSubscriptionOrder(list_id, approach = "mixpay", redirect_url = "", plan="silver", dur=365) {
     // default dur = 365 days
-    return this.request(`/subscriptions/${list_id}/upgrade?approach=${approach}&redirect_url=${redirect_url}&plan=${plan}&dur=${dur}`, 'POST', null)
+    return this.request(`/orders/lists/${list_id}/upgrade?approach=${approach}&redirect_url=${redirect_url}&plan=${plan}&dur=${dur}`, 'POST', null)
   }
 
   // read orders
@@ -115,8 +115,22 @@ export class AuxiliaClient{
     return this.request(`/lists/${list_id}/payments`, 'GET', null)
   }
 
-  updateListPayments(list_id) {
+  updateListPayments(list_id, payload) {
     return this.request(`/lists/${list_id}/payments`, 'PUT', payload)
+  }
+
+  // Payouts
+  connectToStripe() {
+    return this.request(`/stripe/express`, 'POST', null)
+  }
+
+  genLoginStripeURL() {
+    return this.request(`/stripe/express/login`, 'POST', null)
+  }
+
+  // utils
+  proxyToDiscord(pathname, query) {
+    return this.request(`/proxy/discord?pathname=${pathname}&query=${encodeURIComponent(query)}`, 'GET', null)
   }
 
   // Abuse Reports

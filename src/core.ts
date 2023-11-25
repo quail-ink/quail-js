@@ -176,16 +176,6 @@ export class Client{
     return this.request(`/users/me`, 'PUT', profile)
   }
 
-  getMyOrders(offset: number, limit: number): Promise<any> {
-    let url = `/users/me/orders?offset=${offset}&limit=${limit}`
-    return this.request(url, 'GET', null)
-  }
-
-  getOrder(order_id: number): Promise<any> {
-    let url = `/orders/${order_id}`
-    return this.request(url, 'GET', null)
-  }
-
   getUser(user_id: number): Promise<any> {
     return this.request(`/users/${user_id}`, 'GET', null)
   }
@@ -234,11 +224,6 @@ export class Client{
     return this.request(`/subscriptions/${list_id}`, 'DELETE', { trace_id })
   }
 
-  upgradeSubscription(list_id: number | string, approach = "mixpay", redirect_url = "", plan="silver", dur=365): Promise<any> {
-    // default dur = 365 days
-    return this.request(`/subscriptions/${list_id}/upgrade?approach=${approach}&redirect_url=${redirect_url}&plan=${plan}&dur=${dur}`, 'POST', null)
-  }
-
   getListPosts(list_id: number | string, offset = 0, limit = 16, pub = false, sort=''): Promise<any> {
     let url = `/lists/${list_id}/posts?offset=${offset}&limit=${limit}`
     if (pub) {
@@ -278,16 +263,6 @@ export class Client{
     return this.request(`/lists/${list_id}/posts/${post_id}/content`, 'GET', null)
   }
 
-  getListOrders(list_id: number | string, offset: number, limit: number): Promise<any> {
-    let url = `/lists/${list_id}/orders?offset=${offset}&limit=${limit}`
-    return this.request(url, 'GET', null)
-  }
-
-  getListIncomes(list_id: number | string, year: number): Promise<any> {
-    let url = `/lists/${list_id}/incomes?year=${year}`
-    return this.request(url, 'GET', null)
-  }
-
   createList(payload: any): Promise<any> {
     return this.request(`/lists`, 'POST', payload)
   }
@@ -304,10 +279,6 @@ export class Client{
     return this.request(`/lists/domains/${domain}`, 'GET', null)
   }
 
-  getListPayments(list_id: number | string): Promise<any> {
-    return this.request(`/lists/${list_id}/payments`, 'GET', null)
-  }
-
   getListMetrics(list_id: number | string): Promise<any> {
     return this.request(`/lists/${list_id}/metrics`, 'GET', null)
   }
@@ -322,10 +293,6 @@ export class Client{
 
   updateListChannel(list_id: number | string, payload:any): Promise<any> {
     return this.request(`/lists/${list_id}/channel`, 'PUT', payload)
-  }
-
-  updateListPayments(list_id: number | string, payload:any): Promise<any> {
-    return this.request(`/lists/${list_id}/payments`, 'PUT', payload)
   }
 
   updateListAnalytics(list_id: number | string, payload:any): Promise<any> {
@@ -522,5 +489,40 @@ export class Client{
   rejectComment(comment_id: number): Promise<any> {
     return this.request(`/comments/${comment_id}/reject`, 'PUT', null)
   }
+
+  // obsolete
+  getMyOrders(offset: number, limit: number): Promise<any> {
+    let url = `/users/me/orders?offset=${offset}&limit=${limit}`
+    return this.request(url, 'GET', null)
+  }
+
+  getOrder(order_id: number): Promise<any> {
+    let url = `/orders/${order_id}`
+    return this.request(url, 'GET', null)
+  }
+
+  upgradeSubscription(list_id: number | string, approach = "mixpay", redirect_url = "", plan="silver", dur=365): Promise<any> {
+    // default dur = 365 days
+    return this.request(`/subscriptions/${list_id}/upgrade?approach=${approach}&redirect_url=${redirect_url}&plan=${plan}&dur=${dur}`, 'POST', null)
+  }
+
+  getListOrders(list_id: number | string, offset: number, limit: number): Promise<any> {
+    let url = `/lists/${list_id}/orders?offset=${offset}&limit=${limit}`
+    return this.request(url, 'GET', null)
+  }
+
+  getListIncomes(list_id: number | string, year: number): Promise<any> {
+    let url = `/lists/${list_id}/incomes?year=${year}`
+    return this.request(url, 'GET', null)
+  }
+
+  getListPayments(list_id: number | string): Promise<any> {
+    return this.request(`/lists/${list_id}/payments`, 'GET', null)
+  }
+
+  updateListPayments(list_id: number | string, payload:any): Promise<any> {
+    return this.request(`/lists/${list_id}/payments`, 'PUT', payload)
+  }
+
 }
 
