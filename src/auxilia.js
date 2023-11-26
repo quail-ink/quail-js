@@ -134,7 +134,7 @@ export class AuxiliaClient{
     return this.request(`/stripe/express`, 'POST', null)
   }
 
-  genLoginStripeURL() {
+  genStripeLoginURL() {
     return this.request(`/stripe/express/login`, 'POST', null)
   }
 
