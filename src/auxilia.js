@@ -106,7 +106,7 @@ export class AuxiliaClient{
 
   // subscriptions
   modSubscriptionMember(list_id, member_id, payload) {
-    const url = `/subscriptions/lists/${list_id}/members/${member_id}`;
+    const url = `/subscriptions/${list_id}/members/${member_id}`;
     return this.request(url, 'PUT', payload)
   }
 
