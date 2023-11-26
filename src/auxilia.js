@@ -104,6 +104,12 @@ export class AuxiliaClient{
     return this.request(url, 'GET', null)
   }
 
+  // subscriptions
+  modSubscriptionMember(list_id, member_id, payload) {
+    const url = `/subscriptions/lists/${list_id}/members/${member_id}`;
+    return this.request(url, 'PUT', payload)
+  }
+
   // List Incomes List
   getListIncomes(list_id, year) {
     const url = `/lists/${list_id}/incomes?year=${year}`
