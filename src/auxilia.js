@@ -126,6 +126,10 @@ export class AuxiliaClient{
   }
 
   // Payouts
+  getPayout() {
+    return this.request(`/payouts`, 'GET', null)
+  }
+
   connectToStripe() {
     return this.request(`/stripe/express`, 'POST', null)
   }
