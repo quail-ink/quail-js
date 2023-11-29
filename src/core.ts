@@ -299,6 +299,10 @@ export class Client{
     return this.request(`/lists/${list_id}/channel`, 'GET', null)
   }
 
+  createListChannelLineKeys(list_id: number | string): Promise<any> {
+    return this.request(`/lists/${list_id}/channel/line/keys`, 'POST', null)
+  }
+
   updateListAnalytics(list_id: number | string, payload:any): Promise<any> {
     return this.request(`/lists/${list_id}/analytics`, 'PUT', payload)
   }
