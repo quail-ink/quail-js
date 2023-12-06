@@ -284,11 +284,7 @@ export class Client{
   }
 
   updateList(list_id: number | string, payload:any): Promise<any> {
-    return this.request(`/lists/${list_id}`, 'PUT', {
-      "avatar_image_url": payload.avatar_image_url || '',
-      "title": payload.title || '',
-      "description": payload.description || '',
-    })
+    return this.request(`/lists/${list_id}`, 'PUT', payload)
   }
 
   updateListChannel(list_id: number | string, payload:any): Promise<any> {
