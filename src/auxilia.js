@@ -94,6 +94,11 @@ export class AuxiliaClient{
   }
 
   // read orders
+  getOrder(id) {
+    const url = `/orders/${id}`
+    return this.request(url, 'GET', null)
+  }
+
   getMyOrders(offset, limit) {
     const url = `/orders/me?offset=${offset}&limit=${limit}`
     return this.request(url, 'GET', null)
@@ -146,6 +151,15 @@ export class AuxiliaClient{
   // Abuse Reports
   getAbuseReportOpponent(trace_id) {
     return this.request(`/reports/opponent?trace_id=${trace_id}`, 'GET', null)
+  }
+
+  // crypto
+  getCryptos() {
+    return this.request(`/cryptos`, 'GET', null)
+  }
+
+  getCrypto(symbol) {
+    return this.request(`/cryptos/${symbol}`, 'GET', null)
   }
 
   createAbuseReport(payload, ctoken) {
