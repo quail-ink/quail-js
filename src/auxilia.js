@@ -130,6 +130,11 @@ export class AuxiliaClient{
     return this.request(`/lists/${list_id}/payments`, 'PUT', payload)
   }
 
+  updateListCryptoPayments(list_id, payload) {
+    return this.request(`/lists/${list_id}/payments/crypto`, 'PUT', payload)
+  }
+
+
   // Payouts
   getPayout() {
     return this.request(`/payouts`, 'GET', null)
@@ -141,6 +146,18 @@ export class AuxiliaClient{
 
   genStripeLoginURL() {
     return this.request(`/stripe/express/login`, 'POST', null)
+  }
+
+  updateCryptoPayout(payload) {
+    return this.request(`/payouts/crypto`, 'PUT', payload)
+  }
+
+  registerEvm(network) {
+    return this.request(`/payouts/evm/register?network=${network}`, 'POST')
+  }
+
+  unregisterEvm(network) {
+    return this.request(`/payouts/evm/unregister?network=${network}`, 'POST')
   }
 
   // utils
