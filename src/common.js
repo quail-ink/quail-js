@@ -34,4 +34,24 @@ async function sendRequestFormData (url, headers, body) {
   return json.data || { code: json?.code, message: json?.message };
 }
 
-export { sendRequest, sendRequestFormData };
+async function getAccessTokenFromEnv() {
+  let token = '';
+  const auth = localStorage.getItem('auth');
+  if (auth) {
+    try {
+      const authObj = JSON.parse(auth);
+      token = authObj.access_token || authObj.token;
+    } catch (e) {
+      token = '';
+    }
+  }
+
+  if (token === '') {
+    token = window._access_token;
+  }
+
+  return token;
+}
+
+export { sendRequest, sendRequestFormData, getAccessTokenFromEnv };
+

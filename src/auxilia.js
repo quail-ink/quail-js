@@ -1,4 +1,4 @@
-import { sendRequest, sendRequestFormData } from './common'
+import { sendRequest, sendRequestFormData, getAccessTokenFromEnv } from './common'
 
 export class AuxiliaClient{
   apibase = '';
@@ -16,21 +16,8 @@ export class AuxiliaClient{
   getAccessToken() {
     let token = this.access_token;
     if (token === '') {
-      const auth = localStorage.getItem('auth');
-      if (auth) {
-        try {
-          const authObj = JSON.parse(auth);
-          token = authObj.access_token || authObj.token;
-        } catch (e) {
-          token = '';
-        }
-      }
+      token = getAccessTokenFromEnv()
     }
-
-    if (token === '') {
-      token = window._access_token;
-    }
-
     return token;
   }
 
@@ -47,14 +34,13 @@ export class AuxiliaClient{
     }
 
     if (this.apikey) {
-      headers['X-QUAIL-Key'] = this.apikey;
+      headers['X-QUAIL-KEY'] = this.apikey;
     }
 
     if (this.debug) {
-      console.log("request method", method);
-      console.log("request url", url);
-      console.log("request headers", headers);
-      console.log("request body", body);
+      console.log(`request: ${method} ${url}`);
+      console.log("- headers", headers);
+      console.log("- body", body);
     }
 
     return sendRequest(url, method, headers, body);
@@ -71,13 +57,13 @@ export class AuxiliaClient{
     }
 
     if (this.apikey) {
-      headers['X-QUAIL-Key'] = this.apikey;
+      headers['X-QUAIL-KEY'] = this.apikey;
     }
 
     if (this.debug) {
-      console.log("request url", url);
-      console.log("request headers", headers);
-      console.log("request body", body);
+      console.log(`request: POST ${url}`);
+      console.log("- headers", headers);
+      console.log("- body", body);
     }
 
     return sendRequestFormData(url, headers, body);
@@ -134,12 +120,16 @@ export class AuxiliaClient{
     return this.request(`/lists/${list_id}/payments/crypto`, 'PUT', payload)
   }
 
-
   // Payouts
+  createPayout() {
+    return this.request(`/payouts`, 'POST', null)
+  }
+
   getPayout() {
     return this.request(`/payouts`, 'GET', null)
   }
 
+  // Payouts - Stripe
   connectToStripe() {
     return this.request(`/stripe/express`, 'POST', null)
   }
@@ -148,6 +138,7 @@ export class AuxiliaClient{
     return this.request(`/stripe/express/login`, 'POST', null)
   }
 
+  // Payouts - Crypto
   updateCryptoPayout(payload) {
     return this.request(`/payouts/crypto`, 'PUT', payload)
   }

@@ -1,3 +1,5 @@
+import { sendRequest, sendRequestFormData, getAccessTokenFromEnv } from './common'
+
 export class Client{
   apibase = '';
   apikey = '';
@@ -14,21 +16,8 @@ export class Client{
   getAccessToken() {
     let token = this.access_token;
     if (token === '') {
-      const auth = localStorage.getItem('auth');
-      if (auth) {
-        try {
-          const authObj = JSON.parse(auth);
-          token = authObj.access_token || authObj.token;
-        } catch (e) {
-          token = '';
-        }
-      }
+      token = getAccessTokenFromEnv()
     }
-
-    if (token === '') {
-      token = (window as any)._access_token;
-    }
-
     return token;
   }
 
@@ -45,33 +34,16 @@ export class Client{
     }
 
     if (this.apikey) {
-      headers['X-QUAIL-Key'] = this.apikey;
+      headers['X-QUAIL-KEY'] = this.apikey;
     }
 
     if (this.debug) {
-      console.log("request method", method);
-      console.log("request url", url);
-      console.log("request headers", headers);
-      console.log("request body", body);
+      console.log(`request: ${method} ${url}`);
+      console.log("- headers", headers);
+      console.log("- body", body);
     }
 
-    const resp = await fetch(url, {
-      method,
-      headers,
-      body: body ? JSON.stringify(body) : null,
-    });
-
-    const json = await resp.json();
-
-    if (this.debug) {
-      console.log("resp json", json);
-    }
-
-    if (json.code) {
-      console.log("quail client error", json.code, json.message || json.msg);
-      throw new Error(`${json.code} | ${json.message || json.msg} | ${method} ${url}`);
-    }
-    return json.data;
+    return sendRequest(url, method, headers, body);
   }
 
   async requestFormData (url: string, body: any): Promise<any> {
@@ -85,32 +57,16 @@ export class Client{
     }
 
     if (this.apikey) {
-      headers['X-QUAIL-Key'] = this.apikey;
+      headers['X-QUAIL-KEY'] = this.apikey;
     }
 
     if (this.debug) {
-      console.log("request url", url);
-      console.log("request headers", headers);
-      console.log("request body", body);
+      console.log(`request: POST ${url}`);
+      console.log("- headers", headers);
+      console.log("- body", body);
     }
 
-    const resp = await fetch(url, {
-      method: "POST",
-      headers,
-      body: body || null,
-    });
-
-    const json = await resp.json();
-
-    if (this.debug) {
-      console.log("resp json", json);
-    }
-
-    if (json.code) {
-      console.log("quail client error", json.code, json.message || json.msg);
-      throw new Error(`${json.code} | ${json.message || json.msg} | POST ${url}`);
-    }
-    return json.data || { code: json?.code, message: json?.message };
+    return sendRequestFormData(url, headers, body);
   }
 
   getAuthCode(email: string, ctoken: string): Promise<any> {
