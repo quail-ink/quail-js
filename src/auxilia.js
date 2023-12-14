@@ -126,8 +126,8 @@ export class AuxiliaClient{
   }
 
   // Payouts - Stripe
-  connectToStripe() {
-    return this.request(`/stripe/express`, 'POST', null)
+  connectToStripe(country) {
+    return this.request(`/stripe/express?country=${country}`, 'POST', null)
   }
 
   genStripeLoginURL() {
