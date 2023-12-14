@@ -121,10 +121,6 @@ export class AuxiliaClient{
   }
 
   // Payouts
-  createPayout() {
-    return this.request(`/payouts`, 'POST', null)
-  }
-
   getPayout() {
     return this.request(`/payouts`, 'GET', null)
   }
@@ -168,6 +164,15 @@ export class AuxiliaClient{
 
   getCrypto(symbol) {
     return this.request(`/cryptos/${symbol}`, 'GET', null)
+  }
+
+  // country
+  getCountries() {
+    return this.request(`/countries`, 'GET', null)
+  }
+
+  getCountryByAlpha2(code) {
+    return this.request(`/countries/alpha-2/${code}`, 'GET', null)
   }
 
   createAbuseReport(payload, ctoken) {
