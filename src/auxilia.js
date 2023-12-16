@@ -112,12 +112,17 @@ export class AuxiliaClient{
     return this.request(`/lists/${list_id}/payments`, 'GET', null)
   }
 
+  // @TODO: remove
   updateListPayments(list_id, payload) {
     return this.request(`/lists/${list_id}/payments`, 'PUT', payload)
   }
 
   updateListCryptoPayments(list_id, payload) {
     return this.request(`/lists/${list_id}/payments/crypto`, 'PUT', payload)
+  }
+
+  updateListFiatPayments(list_id, payload) {
+    return this.request(`/lists/${list_id}/payments/fiat`, 'PUT', payload)
   }
 
   // Payouts

@@ -116,10 +116,11 @@ export class Client{
     return this.request(`/currencies/${code}`, 'GET', null)
   }
 
+  // @TODO: remove
   getAssets(): Promise<any> {
     return this.request(`/assets`, 'GET', null)
   }
-
+  // @TODO: remove
   getAsset(assetId: string): Promise<any> {
     return this.request(`/assets/${assetId}`, 'GET', null)
   }
