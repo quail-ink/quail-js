@@ -171,6 +171,15 @@ export class AuxiliaClient{
     return this.request(`/cryptos/${symbol}`, 'GET', null)
   }
 
+  // currency
+  getCurrencies() {
+    return this.request(`/currencies`, 'GET', null)
+  }
+
+  getCurrency(code) {
+    return this.request(`/currencies/${code}`, 'GET', null)
+  }
+
   // country
   getCountries() {
     return this.request(`/countries`, 'GET', null)

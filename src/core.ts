@@ -108,23 +108,6 @@ export class Client{
     return this.request(`/c`, 'GET', null)
   }
 
-  getCurrencies(): Promise<any> {
-    return this.request(`/currencies`, 'GET', null)
-  }
-
-  getCurrency(code: string): Promise<any> {
-    return this.request(`/currencies/${code}`, 'GET', null)
-  }
-
-  // @TODO: remove
-  getAssets(): Promise<any> {
-    return this.request(`/assets`, 'GET', null)
-  }
-  // @TODO: remove
-  getAsset(assetId: string): Promise<any> {
-    return this.request(`/assets/${assetId}`, 'GET', null)
-  }
-
   getMe(): Promise<any> {
     return this.request(`/users/me`, 'GET', null)
   }
