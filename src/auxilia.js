@@ -144,6 +144,11 @@ export class AuxiliaClient{
     return this.request(`/payouts/crypto`, 'PUT', payload)
   }
 
+  // Payouts - Paypal
+  updatePaypalPayout(payload) {
+    return this.request(`/payouts/paypal`, 'PUT', payload)
+  }
+
   registerEvm(network) {
     return this.request(`/payouts/evm/register?network=${network}`, 'POST')
   }
