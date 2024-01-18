@@ -468,5 +468,29 @@ export class Client{
     return this.request(`/lists/${list_id}/payments`, 'PUT', payload)
   }
 
+  // tweets
+  getTweets(list_id: number | string, offset = 0, limit = 16): Promise<any> {
+    return this.request(`/tweets?list=${list_id}&offset=${offset}&limit=${limit}`, 'GET', null)
+  }
+
+  createTweet(payload: any): Promise<any> {
+    return this.request(`/tweets`, 'POST', payload)
+  }
+
+  deleteTweet(tweet_id: number | string): Promise<any> {
+    return this.request(`/tweets/${tweet_id}`, 'DELETE', null)
+  }
+
+  getTweetReplies(tweet_id:number | string, list_id: number | string, offset = 0, limit = 16): Promise<any> {
+    return this.request(`/tweets/${tweet_id}?list=${list_id}&offset=${offset}&limit=${limit}`, 'GET', null)
+  }
+
+  createTweetReply(payload: any): Promise<any> {
+    return this.request(`/tweets/${payload.tweet_id}/replies`, 'POST', payload)
+  }
+
+  deleteTweetReply(reply_id: number | string): Promise<any> {
+    return this.request(`/tweets/0/replies/${reply_id}`, 'DELETE', null)
+  }
 }
 
