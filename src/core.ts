@@ -477,8 +477,16 @@ export class Client{
     return this.request(`/tweets`, 'POST', payload)
   }
 
+  updateTweet(tweet_id: number | string, payload: any): Promise<any> {
+    return this.request(`/tweets/${tweet_id}`, 'PUT', payload)
+  }
+
   deleteTweet(tweet_id: number | string): Promise<any> {
     return this.request(`/tweets/${tweet_id}`, 'DELETE', null)
+  }
+
+  reactTweet(tweet_id: number | string, payload: any): Promise<any> {
+    return this.request(`/tweets/${tweet_id}/reactions`, 'POST', payload)
   }
 
   getTweetReplies(tweet_id:number | string, list_id: number | string, offset = 0, limit = 16): Promise<any> {
