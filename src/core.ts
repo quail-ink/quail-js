@@ -473,6 +473,10 @@ export class Client{
     return this.request(`/tweets?list=${list_id}&offset=${offset}&limit=${limit}`, 'GET', null)
   }
 
+  getPinnedTweets(list_id: number | string): Promise<any> {
+    return this.request(`/tweets/pinned?list=${list_id}`, 'GET', null)
+  }
+
   createTweet(payload: any): Promise<any> {
     return this.request(`/tweets`, 'POST', payload)
   }
@@ -487,6 +491,14 @@ export class Client{
 
   reactTweet(tweet_id: number | string, payload: any): Promise<any> {
     return this.request(`/tweets/${tweet_id}/reactions`, 'POST', payload)
+  }
+
+  pinTweet(tweet_id: number | string): Promise<any> {
+    return this.request(`/tweets/${tweet_id}/pin`, 'PUT', null)
+  }
+
+  unpinTweet(tweet_id: number | string): Promise<any> {
+    return this.request(`/tweets/${tweet_id}/unpin`, 'DELETE', null)
   }
 
   getTweetReplies(tweet_id:number | string, list_id: number | string, offset = 0, limit = 16): Promise<any> {
