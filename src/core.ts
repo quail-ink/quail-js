@@ -477,8 +477,8 @@ export class Client{
     return this.request(`/tweets/pinned?list=${list_id}`, 'GET', null)
   }
 
-  createTweet(payload: any): Promise<any> {
-    return this.request(`/tweets?list=${payload.list_id}`, 'POST', payload)
+  createTweet(list_id: number | string, payload: any): Promise<any> {
+    return this.request(`/tweets?list=${list_id}`, 'POST', payload)
   }
 
   updateTweet(tweet_id: number | string, payload: any): Promise<any> {
