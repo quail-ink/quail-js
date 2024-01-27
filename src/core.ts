@@ -270,6 +270,14 @@ export class Client{
     return this.request(`/lists/${list_id}/comment`, 'PUT', payload)
   }
 
+  updateListTweets(list_id: number | string, payload:any): Promise<any> {
+    return this.request(`/lists/${list_id}/tweets`, 'PUT', payload)
+  }
+
+  updateListCooperators(list_id: number | string, payload:any): Promise<any> {
+    return this.request(`/lists/${list_id}/cooperators`, 'PUT', payload)
+  }
+
   getListSubscriptions(list_id: number | string, offset: number, limit: number, email = "", premium = ""): Promise<any> {
     let url = `/lists/${list_id}/subscriptions?offset=${offset}&limit=${limit}`
     if (email) {
