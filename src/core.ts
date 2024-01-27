@@ -227,6 +227,10 @@ export class Client{
     return this.request(`/lists/${list_id}`, 'PUT', payload)
   }
 
+  updateListBulletin(list_id: number | string, payload:any): Promise<any> {
+    return this.request(`/lists/${list_id}/bulletin`, 'PUT', payload)
+  }
+
   updateListChannel(list_id: number | string, payload:any): Promise<any> {
     return this.request(`/lists/${list_id}/channel`, 'PUT', payload)
   }
