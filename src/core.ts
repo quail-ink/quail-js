@@ -481,8 +481,12 @@ export class Client{
   }
 
   // tweets
-  getTweets(list_id: number | string, offset = 0, limit = 16): Promise<any> {
-    return this.request(`/tweets?list=${list_id}&offset=${offset}&limit=${limit}`, 'GET', null)
+  getTweets(list_id: number | string, offset = 0, limit = 16, pub = false): Promise<any> {
+    let url = `/tweets?list=${list_id}&offset=${offset}&limit=${limit}`
+    if (pub) {
+      url += `&public=1`
+    }
+    return this.request(url, 'GET', null)
   }
 
   getPinnedTweets(list_id: number | string): Promise<any> {
