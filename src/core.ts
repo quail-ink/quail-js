@@ -489,6 +489,11 @@ export class Client{
     return this.request(url, 'GET', null)
   }
 
+  getTweet(tweet_id: number | string): Promise<any> {
+    let url = `/tweets/${tweet_id}`
+    return this.request(url, 'GET', null)
+  }
+
   getPinnedTweets(list_id: number | string): Promise<any> {
     return this.request(`/tweets/pinned?list=${list_id}`, 'GET', null)
   }
