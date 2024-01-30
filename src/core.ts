@@ -531,7 +531,7 @@ export class Client{
   }
 
   getTweetReplies(tweet_id:number | string, list_id: number | string, offset = 0, limit = 16): Promise<any> {
-    return this.request(`/tweets/${tweet_id}?list=${list_id}&offset=${offset}&limit=${limit}`, 'GET', null)
+    return this.request(`/tweets/${tweet_id}/replies?list=${list_id}&offset=${offset}&limit=${limit}`, 'GET', null)
   }
 
   createTweetReply(payload: any): Promise<any> {
