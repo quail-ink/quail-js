@@ -130,6 +130,10 @@ export class AuxiliaClient{
     return this.request(`/payouts`, 'GET', null)
   }
 
+  updatePayout(payload) {
+    return this.request(`/payouts`, 'PUT', payload)
+  }
+
   // Payouts - Stripe
   connectToStripe(country) {
     return this.request(`/stripe/express?country=${country}`, 'POST', null)
@@ -147,6 +151,11 @@ export class AuxiliaClient{
   // Payouts - Paypal
   updatePaypalPayout(payload) {
     return this.request(`/payouts/paypal`, 'PUT', payload)
+  }
+
+  // Payouts - Wise
+  updateWisePayout(payload) {
+    return this.request(`/payouts/wise`, 'PUT', payload)
   }
 
   registerEvm(network) {
