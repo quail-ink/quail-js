@@ -201,5 +201,17 @@ export class AuxiliaClient{
       ...payload,
     })
   }
+
+  getAbuseReportOpponent(trace_id) {
+    return this.request(`/reports/opponent?trace_id=${trace_id}`, 'GET', null)
+  }
+
+  createAbuseReport(payload, ctoken) {
+    return this.request(`/reports`, 'POST', {
+      'challenge-action': 'abuse-report',
+      'challenge-token': ctoken,
+      ...payload,
+    })
+  }
 }
 

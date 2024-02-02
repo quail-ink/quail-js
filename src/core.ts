@@ -164,6 +164,10 @@ export class Client{
     return this.request(`/subscriptions/${list_id}`, 'DELETE', { trace_id })
   }
 
+  getUnsubscribeOpponent(trace_id: string): Promise<any> {
+    return this.request(`/subscriptions/opponent?trace_id=${trace_id}`, 'GET', null)
+  }
+
   getListPosts(list_id: number | string, offset = 0, limit = 16, pub = false, sort=''): Promise<any> {
     let url = `/lists/${list_id}/posts?offset=${offset}&limit=${limit}`
     if (pub) {
@@ -408,18 +412,6 @@ export class Client{
       url += `&lang=${lang}`
     }
     return this.request(url, 'GET', null)
-  }
-
-  getAbuseReportOpponent(trace_id: string): Promise<any> {
-    return this.request(`/reports/opponent?trace_id=${trace_id}`, 'GET', null)
-  }
-
-  createAbuseReport(payload: any, ctoken: string): Promise<any> {
-    return this.request(`/reports`, 'POST', {
-      'challenge-action': 'abuse-report',
-      'challenge-token': ctoken,
-      ...payload,
-    })
   }
 
   getComments(post_id: number, offset = 0, limit = 16): Promise<any> {
