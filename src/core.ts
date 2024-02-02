@@ -538,8 +538,8 @@ export class Client{
     return this.request(`/tweets/${payload.tweet_id}/replies`, 'POST', payload)
   }
 
-  deleteTweetReply(reply_id: number | string): Promise<any> {
-    return this.request(`/tweets/0/replies/${reply_id}`, 'DELETE', null)
+  deleteTweetReply(tweet_id: number | string, reply_id: number | string): Promise<any> {
+    return this.request(`/tweets/${tweet_id}/replies/${reply_id}`, 'DELETE', null)
   }
 }
 
