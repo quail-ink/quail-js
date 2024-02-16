@@ -533,5 +533,22 @@ export class Client{
   deleteTweetReply(tweet_id: number | string, reply_id: number | string): Promise<any> {
     return this.request(`/tweets/${tweet_id}/replies/${reply_id}`, 'DELETE', null)
   }
+
+  // pack
+  getListPacks(list_id: number | string): Promise<any> {
+    return this.request(`/lists/${list_id}/packs`, 'GET', null)
+  }
+
+  getListPack(list_id: number | string, pack_id: number | string): Promise<any> {
+    return this.request(`/lists/${list_id}/packs/${pack_id}`, 'GET', null)
+  }
+
+  createListPack(list_id: number | string, payload: any): Promise<any> {
+    return this.request(`/lists/${list_id}/packs`, 'POST', payload)
+  }
+
+  updateListPack(list_id: number | string, pack_id: number | string, payload: any): Promise<any> {
+    return this.request(`/lists/${list_id}/packs/${pack_id}`, 'PUT', payload)
+  }
 }
 
