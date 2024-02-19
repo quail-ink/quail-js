@@ -69,14 +69,14 @@ export class Client{
     return sendRequestFormData(url, headers, body);
   }
 
-  getAuthCode(email: string, ctoken: string): Promise<any> {
+  getAuthCode(email: string, ctoken: string, scense = 'login'): Promise<any> {
     let lang = navigator.language;
     if (lang.length > 2) {
       lang = lang.substring(0, 2);
     }
 
     return this.request(`/auth/code`, 'POST', {
-      email, lang,
+      email, lang, scense,
       'challenge-action': 'request_auth_code',
       'challenge-token': ctoken,
     })
