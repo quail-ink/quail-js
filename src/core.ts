@@ -116,6 +116,12 @@ export class Client{
     return this.request(`/users/me`, 'PUT', profile)
   }
 
+  updateMeEmail(email, code): Promise<any> {
+    return this.request(`/users/me/email`, 'PUT', {
+      email, code
+    })
+  }
+
   getUser(user_id: number): Promise<any> {
     return this.request(`/users/${user_id}`, 'GET', null)
   }
