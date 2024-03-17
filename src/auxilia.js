@@ -149,8 +149,17 @@ export class AuxiliaClient{
   }
 
   // Payouts - Paypal
+  // @TODO: remove
   updatePaypalPayout(payload) {
     return this.request(`/payouts/paypal`, 'PUT', payload)
+  }
+
+  connectToPaypal(code) {
+    return this.request(`/paypal/connect?code=${code}`, 'POST', null)
+  }
+
+  genPaypalLoginURL() {
+    return this.request(`/paypal/connect/login`, 'POST', null)
   }
 
   // Payouts - Wise
