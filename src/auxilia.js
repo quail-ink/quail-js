@@ -158,6 +158,10 @@ export class AuxiliaClient{
     return this.request(`/paypal/connect?code=${code}`, 'POST', null)
   }
 
+  disconnectToPaypal() {
+    return this.request(`/paypal/connect`, 'DELETE', null)
+  }
+
   genPaypalLoginURL() {
     return this.request(`/paypal/connect/login`, 'POST', null)
   }
