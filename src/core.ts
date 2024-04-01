@@ -292,6 +292,12 @@ export class Client{
     return this.request(`/lists/${list_id}/cooperators`, 'PUT', payload)
   }
 
+  updateListOptions(list_id: number | string, options:any): Promise<any> {
+    return this.request(`/lists/${list_id}/options`, 'PUT', {
+      options,
+    })
+  }
+
   getListSubscriptions(list_id: number | string, offset: number, limit: number, email = "", premium = ""): Promise<any> {
     let url = `/lists/${list_id}/subscriptions?offset=${offset}&limit=${limit}`
     if (email) {
