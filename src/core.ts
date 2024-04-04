@@ -298,6 +298,10 @@ export class Client{
     })
   }
 
+  createListExport(list_id: number | string): Promise<any> {
+    return this.request(`/lists/${list_id}/export.zip`, 'POST', null)
+  }
+
   getListSubscriptions(list_id: number | string, offset: number, limit: number, email = "", premium = ""): Promise<any> {
     let url = `/lists/${list_id}/subscriptions?offset=${offset}&limit=${limit}`
     if (email) {
