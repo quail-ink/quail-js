@@ -454,40 +454,6 @@ export class Client{
     return this.request(`/comments/${comment_id}/reject`, 'PUT', null)
   }
 
-  // obsolete
-  getMyOrders(offset: number, limit: number): Promise<any> {
-    let url = `/users/me/orders?offset=${offset}&limit=${limit}`
-    return this.request(url, 'GET', null)
-  }
-
-  getOrder(order_id: number): Promise<any> {
-    let url = `/orders/${order_id}`
-    return this.request(url, 'GET', null)
-  }
-
-  upgradeSubscription(list_id: number | string, approach = "mixpay", redirect_url = "", plan="silver", dur=365): Promise<any> {
-    // default dur = 365 days
-    return this.request(`/subscriptions/${list_id}/upgrade?approach=${approach}&redirect_url=${redirect_url}&plan=${plan}&dur=${dur}`, 'POST', null)
-  }
-
-  getListOrders(list_id: number | string, offset: number, limit: number): Promise<any> {
-    let url = `/lists/${list_id}/orders?offset=${offset}&limit=${limit}`
-    return this.request(url, 'GET', null)
-  }
-
-  getListIncomes(list_id: number | string, year: number): Promise<any> {
-    let url = `/lists/${list_id}/incomes?year=${year}`
-    return this.request(url, 'GET', null)
-  }
-
-  getListPayments(list_id: number | string): Promise<any> {
-    return this.request(`/lists/${list_id}/payments`, 'GET', null)
-  }
-
-  updateListPayments(list_id: number | string, payload:any): Promise<any> {
-    return this.request(`/lists/${list_id}/payments`, 'PUT', payload)
-  }
-
   // tweets
   getTweets(list_id: number | string, offset = 0, limit = 16, pub = false): Promise<any> {
     let url = `/tweets?list=${list_id}&offset=${offset}&limit=${limit}`

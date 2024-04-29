@@ -74,9 +74,8 @@ export class AuxiliaClient{
   }
 
   // place orders
-  placeSubscriptionOrder(list_id, approach = "mixpay", redirect_url = "", plan="silver", dur=365) {
-    // default dur = 365 days
-    return this.request(`/orders/lists/${list_id}/upgrade?approach=${approach}&redirect_url=${redirect_url}&plan=${plan}&dur=${dur}`, 'POST', null)
+  placeSubscriptionOrder(list_id, payload) {
+    return this.request(`/orders/lists/${list_id}/upgrade`, 'POST', payload)
   }
 
   // read orders
