@@ -78,6 +78,15 @@ export class AuxiliaClient{
     return this.request(`/orders/lists/${list_id}/upgrade`, 'POST', payload)
   }
 
+  // referrals
+  getReferrerByCode(code) {
+    return this.request(`/referrals/referrer?code=${code}`, 'GET', null)
+  }
+
+  getMyReferralCode() {
+    return this.request(`/referrals/code`, 'GET', null)
+  }
+
   // read orders
   getOrder(id) {
     const url = `/orders/${id}`
