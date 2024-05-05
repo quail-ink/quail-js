@@ -120,6 +120,11 @@ export class AuxiliaClient{
     return this.request(`/lists/${list_id}/payments`, 'GET', null)
   }
 
+  // Referral
+  updateListPaymentsReferral(list_id, payload) {
+    return this.request(`/lists/${list_id}/payments/referral`, 'PUT', payload)
+  }
+
   // @TODO: remove
   updateListPayments(list_id, payload) {
     return this.request(`/lists/${list_id}/payments`, 'PUT', payload)
