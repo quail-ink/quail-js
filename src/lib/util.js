@@ -31,7 +31,7 @@ async function inject(link, attrs) {
     }
     return new Promise((resolve, reject) => {
       script.onload = () => {
-        console.log(`inject <${tag}>`, link);
+        console.log(`[quailjs.util.inject] inject <${tag}>`, link);
         resolve(null);
       };
     });
@@ -74,10 +74,8 @@ function debounce(func, delay) {
 function copyToClipboard(text) {
   if (navigator.clipboard && window.isSecureContext) {
     // Navigator clipboard API method
-    navigator.clipboard.writeText(text).then(function() {
-      console.log("Text copied to clipboard:", text);
-    }, function(err) {
-      console.error("Could not copy text: ", err);
+    navigator.clipboard.writeText(text).then(function() {}, function(err) {
+      console.error("[quailjs.util.copyToClipboard] Could not copy text: ", err);
     });
   } else {
     // Fallback method for older browsers
@@ -88,10 +86,9 @@ function copyToClipboard(text) {
     textArea.select();
     try {
         document.execCommand('copy');
-        console.log("Text copied to clipboard:", text);
     } catch (err) {
-        console.error("Could not copy text: ", err);
-    }
+        console.error("[quailjs.util.copyToClipboard] Could not copy text: ", err);
+      }
     document.body.removeChild(textArea);
   }
 }

@@ -10,7 +10,7 @@ async function sendRequest(url, method, headers, body) {
   const json = await resp.json();
 
   if (json.code) {
-    console.log("found error", json.code, json.message || json.msg);
+    console.error("[quailjs.request] client error", json.code, json.message || json.msg);
     throw new Error(`${json.code} | ${json.message || json.msg} | ${method} ${url}`);
   }
   return json.data;
@@ -26,7 +26,7 @@ async function sendRequestFormData (url, headers, body) {
   const json = await resp.json();
 
   if (json.code) {
-    console.log("quail client error", json.code, json.message || json.msg);
+    console.error("[quailjs.request] client error", json.code, json.message || json.msg);
     throw new Error(`${json.code} | ${json.message || json.msg} | POST ${url}`);
   }
 
