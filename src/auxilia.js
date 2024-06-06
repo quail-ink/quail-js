@@ -1,4 +1,5 @@
-import { sendRequest, sendRequestFormData, getAccessTokenFromEnv } from './common'
+import { sendRequest, sendRequestFormData } from './lib/request'
+import { getAccessTokenFromEnv } from './lib/auth'
 
 export class AuxiliaClient{
   apibase = '';
