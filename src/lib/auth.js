@@ -65,6 +65,7 @@ async function verify(client) {
       return m;
     } catch (e) {
       logout();
+      return null;
     }
   }
   return null;
@@ -72,7 +73,6 @@ async function verify(client) {
 
 function logout() {
   localStorage.removeItem('auth');
-  window.location.reload();
 }
 
 
