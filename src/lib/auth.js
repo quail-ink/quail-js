@@ -54,6 +54,8 @@ async function updateEnvToken(token) {
       console.warn('Failed to parse auth object, use fallback one', e);
       authObj = { access_token: token };
     }
+  } else {
+    authObj = { access_token: token };
   }
   localStorage.setItem('auth', JSON.stringify(authObj));
 }
