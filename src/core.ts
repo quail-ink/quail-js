@@ -186,12 +186,16 @@ export class Client{
     return this.request(url, 'GET', null)
   }
 
-  getListDelivery(list_id: number | string, offset = 0, limit = 10): Promise<any> {
+  getListDeliveryTasks(list_id: number | string, offset = 0, limit = 10): Promise<any> {
     return this.request(`/lists/${list_id}/delivery?offset=${offset}&limit=${limit}`, 'GET', null)
   }
 
-  cancelScheduledDelivery(list_id: number | string, delivery_id: number): Promise<any> {
-    return this.request(`/lists/${list_id}/delivery/${delivery_id}/cancel`, 'PUT', null)
+  getListDeliveryTask(list_id: number | string, task_id: number): Promise<any> {
+    return this.request(`/lists/${list_id}/delivery/${task_id}`, 'GET', null)
+  }
+
+  cancelScheduledDeliveryTask(list_id: number | string, task_id: number): Promise<any> {
+    return this.request(`/lists/${list_id}/delivery/${task_id}/cancel`, 'PUT', null)
   }
 
   getPinnedPosts(list_id: number | string): Promise<any> {
