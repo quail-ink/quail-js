@@ -218,6 +218,12 @@ export class Client{
     return this.request(`/lists/${list_id}/posts/${post_id}/content`, 'GET', null)
   }
 
+  searchPosts(q: string, list=0, offset = 0): Promise<any> {
+    return this.request(`/posts/search`, 'POST', {
+      q, list, offset
+    })
+  }
+
   createList(payload: any): Promise<any> {
     return this.request(`/lists`, 'POST', payload)
   }
