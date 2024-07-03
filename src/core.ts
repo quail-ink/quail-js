@@ -264,6 +264,10 @@ export class Client{
     return this.request(`/lists/${list_id}/channel/line/keys`, 'POST', null)
   }
 
+  getTwitterAuthUrl(list_id: number): Promise<any> {
+    return this.request(`/twitter/authorize?list=${list_id || ''}`, 'GET', null)
+  }
+
   updateListAnalytics(list_id: number | string, payload:any): Promise<any> {
     return this.request(`/lists/${list_id}/analytics`, 'PUT', payload)
   }
