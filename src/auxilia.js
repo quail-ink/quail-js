@@ -249,5 +249,43 @@ export class AuxiliaClient{
       ...payload,
     })
   }
+
+  // ai
+  generateFrontmatter (title, content, includes) {
+    let url = `/composer/frontmatter`
+    if (includes.length > 0) {
+      url = `${url}?includes=${includes.map(x => encodeURIComponent(x.toLowerCase())).join(',')}`
+    }
+    return this.request(url, 'POST', {
+      title, content
+    });
+  }
+
+  generateMetadata (title, content, includes) {
+    let url = `/composer/metadata`
+    if (includes.length > 0) {
+      url = `${url}?includes=${includes.map(x => encodeURIComponent(x.toLowerCase())).join(',')}`
+    }
+    return this.request(url, 'POST', {
+      title, content
+    });
+  }
+
+  generateTweets (title, content) {
+    let url = `/composer/generate-tweets`
+    return this.request(url, 'POST', {
+      title, content
+    });
+  }
+
+  createTask (taskType, payload) {
+    let url = `/tasks/${taskType}`
+    return this.request(url, 'POST', payload);
+  }
+
+  getTask (task_id) {
+    let url = `/tasks/${task_id}`
+    return this.request(url, 'GET', null);
+  }
 }
 

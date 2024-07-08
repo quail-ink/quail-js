@@ -342,33 +342,6 @@ export class Client{
     })
   }
 
-  generateFrontmatter (title: string, content: string, includes: string[] = []): Promise<any> {
-    let url = `/composer/frontmatter`
-    if (includes.length > 0) {
-      url = `${url}?includes=${includes.map(x => encodeURIComponent(x.toLowerCase())).join(',')}`
-    }
-    return this.request(url, 'POST', {
-      title, content
-    });
-  }
-
-  generateMetadata (title: string, content: string, includes: string[] = []): Promise<any> {
-    let url = `/composer/metadata`
-    if (includes.length > 0) {
-      url = `${url}?includes=${includes.map(x => encodeURIComponent(x.toLowerCase())).join(',')}`
-    }
-    return this.request(url, 'POST', {
-      title, content
-    });
-  }
-
-  generateTweets (title: string, content: string): Promise<any> {
-    let url = `/composer/generate-tweets`
-    return this.request(url, 'POST', {
-      title, content
-    });
-  }
-
   searchPhotos (query: string, page = 1, limit = 10): Promise<any> {
     query = encodeURIComponent(query)
     return this.request(`/composer/unsplash/photos/search?query=${query}&page=${page}&limit=${limit}`, 'GET', null);
