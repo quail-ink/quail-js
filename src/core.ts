@@ -372,12 +372,15 @@ export class Client{
     return this.request(`/lists/${listID}/posts/${slug}/unpublish`, 'PUT', null)
   }
 
-  deliverPost (listID: any, slug:any, scheduledAt): Promise<any> {
-    let payload = null;
+  deliverPost (listID: any, slug:any, scheduledAt, channels = []): Promise<any> {
+    let payload:any = {
+      channels: [],
+    };
     if (scheduledAt) {
-      payload = {
-        scheduled_at: scheduledAt,
-      }
+      payload.scheduled_at = scheduledAt;
+    }
+    if (channels) {
+      payload.channels = channels;
     }
     return this.request(`/lists/${listID}/posts/${slug}/deliver`, 'PUT', payload)
   }
