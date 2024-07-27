@@ -123,6 +123,12 @@ export class Client{
     })
   }
 
+  updateMeOptions(options:any): Promise<any> {
+    return this.request(`/users/me/options`, 'PUT', {
+      options,
+    })
+  }
+
   getUser(user_id: number): Promise<any> {
     return this.request(`/users/${user_id}`, 'GET', null)
   }
