@@ -360,8 +360,10 @@ export class Client{
     return this.request(`/lists/${listID}/posts/${postID}/update`, 'PUT', payload)
   }
 
-  updatePostOptions (listID: any, postID:any, payload:any): Promise<any> {
-    return this.request(`/lists/${listID}/posts/${postID}/options`, 'PUT', payload)
+  updatePostOptions (listID: any, postID:any, options:any): Promise<any> {
+    return this.request(`/lists/${listID}/posts/${postID}/options`, 'PUT', {
+      options
+    })
   }
 
   publishPost (listID: any, slug:any): Promise<any> {
