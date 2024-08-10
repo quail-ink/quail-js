@@ -193,6 +193,24 @@ export class AuxiliaClient{
     return this.request(`/payouts/evm/unregister?network=${network}`, 'POST')
   }
 
+  // Payouts - Tax
+  getTax() {
+    return this.request(`/me/tax`, 'GET', null)
+  }
+
+  submitTaxInfo(payload) {
+    return this.request(`/me/tax`, 'POST', payload)
+  }
+
+  uploadResidenceProof(formData) {
+    return this.requestFormData(`/me/tax/proof`, formData);
+  }
+
+  // Payouts - Items
+  getPayoutItems(year) {
+    return this.request(`/me/items/${year}`, 'GET', null)
+  }
+
   // utils
   proxyToDiscord(pathname, query) {
     return this.request(`/proxy/discord?pathname=${pathname}&query=${encodeURIComponent(query)}`, 'GET', null)
