@@ -208,7 +208,7 @@ export class AuxiliaClient{
 
   // Payouts - Items
   getPayoutItems(year) {
-    return this.request(`/me/items/${year}`, 'GET', null)
+    return this.request(`/payouts/items/${year}`, 'GET', null)
   }
 
   // utils
