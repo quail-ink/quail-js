@@ -401,8 +401,12 @@ export class Client{
     return `${this.apibase}/lists/${listID}/posts/${slug}/preview?access_token=${token}`
   }
 
-  uploadAttachment(formData: FormData): Promise<any> {
-    return this.requestFormData(`/attachments`, formData);
+  uploadAttachment(formData: FormData, encrypted: boolean): Promise<any> {
+    let appended = '';
+    if (encrypted) {
+      appended = `?encrypted=${encrypted}`
+    }
+    return this.requestFormData(`/attachments${appended}`, formData);
   }
 
   incCount(post_id, field): Promise<any>  {
